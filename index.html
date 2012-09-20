@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+
+    <title>Example of how to communicate with OpenERP using JSON with javascript</title>
+
+
+    <!-- openerp full libs -->
+
+    <script src="http://openerp.example.com/web/webclient/js" type="text/javascript" > </script>
+
+
+    <!-- Our method ``do_fetch()`` -->
+
+    <script src="main.js" type="text/javascript" > </script>
+
+
+    <!-- bootstrap -->
+
+    <script type="text/javascript">
+        var oe;
+        $(function() {
+            oe = openerp.init();
+            oe.connection.bind('http://openerp.example.com');
+            oe.connection.session_authenticate(
+              'mydatabase',
+              'admin',
+              'secret').then(function() {
+                $('#login').html("Logged in");
+                do_fetch(oe);
+              });
+
+        });
+    </script>
+  </head>
+
+  <body>
+    <div id="login">Logging in ... </div>
+    <div id="fetch">Fetching ... </div>
+  </body>
+</html>
