@@ -32,7 +32,7 @@ function rpc_jsonp(url, payload) {
 
     var payload_str = JSON.stringify(payload);
     var payload_url = $.param({r: payload_str});
-    if (payload_url.length < 2000) {
+    if (payload_url.length > 2000) {
         throw new Error("Payload is too big.");
     }
     // Direct jsonp request
